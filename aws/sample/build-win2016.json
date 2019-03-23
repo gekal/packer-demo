@@ -8,7 +8,6 @@
     {
       "type": "amazon-ebs",
       "profile": "{{user `PROFILE`}}",
-      "region": "{{user `aws_region`}}",
       "source_ami_filter": {
         "filters": {
           "name": "Windows_Server-2016-Japanese-Full-Base-*"
