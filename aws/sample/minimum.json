@@ -25,8 +25,8 @@
       "ami_description": "Amazon Linux build at {{user `build_time`}}.",
       "tags": {
         "Name": "amazon-linux-2-{{user `build_time`}}",
-        "Base_AMI_ID": "{{ .SourceAMI }}",
-        "Base_AMI_NAME": "{{ .SourceAMIName }}"
+        "BASE_AMI_ID": "{{ .SourceAMI }}",
+        "BASE_AMI_NAME": "{{ .SourceAMIName }}"
       }
     }
   ],
