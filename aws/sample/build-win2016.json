@@ -1,0 +1,42 @@
+{
+  "variables": {
+    "PROFILE": "default",
+    "aws_region": "ap-northeast-1",
+    "build_time": "{{isotime \"20060102-150405\"}}"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "profile": "{{user `PROFILE`}}",
+      "region": "{{user `aws_region`}}",
+      "source_ami_filter": {
+        "filters": {
+          "name": "Windows_Server-2016-Japanese-Full-Base-*"
+        },
+        "owners": [
+          "801119661308"
+        ],
+        "most_recent": true
+      },
+      "instance_type": "t2.micro",
+      "ami_name": "Windows-Server-2016-Japanese-{{user `build_time`}}",
+      "user_data_file": "{{template_dir}}/setup_winrm.txt",
+      "ami_description": "Windows Server build at {{user `build_time`}}.",
+      "tags": {
+        "Name": "Windows-Server-2016-Japanese-{{user `build_time`}}",
+        "BASE_AMI_ID": "{{ .SourceAMI }}",
+        "BASE_AMI_NAME": "{{ .SourceAMIName }}"
+      },
+      "communicator": "winrm",
+      "winrm_username": "Administrator"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "powershell",
+      "scripts": [
+        "scripts/sysprep_winsvr2016.ps1"
+      ]
+    }
+  ]
+}
