@@ -33,10 +33,14 @@
   "provisioners": [
     {
       "type": "powershell",
-      "scripts": [
-        "scripts/ad-domain-services.ps1",
-        "scripts/sysprep_winsvr2016.ps1"
-      ]
+      "script": "scripts/ad-domain-services.ps1"
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "powershell",
+      "script": "scripts/sysprep_winsvr2016.ps1"
     }
   ]
 }
